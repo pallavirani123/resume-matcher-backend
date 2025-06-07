@@ -35,3 +35,13 @@ def upload():
 
 if __name__ == "__main__":
     app.run(debug=True)
+@app.route("/upload", methods=["POST"])
+def upload_resume():
+    ...
+    score, matched_keywords, feedback = score_resume(resume_text, job_description)
+
+    return jsonify({
+        "score": score,
+        "matched_keywords": matched_keywords,
+        "feedback": feedback
+    })
