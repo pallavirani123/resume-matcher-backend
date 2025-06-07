@@ -25,23 +25,12 @@ def upload():
     job_keywords = extract_keywords(job_desc)
     match_result = match_keywords(resume_keywords, job_keywords)
 
-    return jsonify({
-        "resume_keywords": resume_keywords,
-        "job_keywords": job_keywords,
-        "match_score": match_result["score"],
-        "matched_keywords": match_result["matched"],
-        "missing_keywords": match_result["missing"]
-    })
-
-if __name__ == "__main__":
-    app.run(debug=True)
-@app.route("/upload", methods=["POST"])
-def upload_resume():
-    ...
     score, matched_keywords, feedback = score_resume(resume_text, job_description)
 
     return jsonify({
         "score": score,
         "matched_keywords": matched_keywords,
-        "feedback": feedback
-    })
+        "feedback": feedback})
+
+if __name__ == "__main__":
+    app.run(debug=True)
