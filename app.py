@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
 from utils.parser import parse_resume
-from utils.keywords import extract_keywords, match_keywords
+from utils.keywords import extract_keywords, match_keywords, score_resume
 
 app = Flask(__name__)
 CORS(app)
