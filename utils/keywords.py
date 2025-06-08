@@ -17,13 +17,17 @@ def match_keywords(resume_keywords, job_keywords):
     score = len(matched) / len(job_keywords) * 100 if job_keywords else 0
     return {"score": round(score, 1), "matched": matched, "missing": missing}
 def score_resume(resume_text, job_description):
-    resume_words = set(resume_text.lower().split())
-    job_words = set(job_description.lower().split())
+    resume_tokens = tokenize(resume_text)
+    job_tokens = tokenize(job_description)
 
-    matched_keywords = resume_words.intersection(job_words)
-    score = len(matched_keywords)
+    matched_keywords = list(set(resume_tokens).intersection(job_tokens))
+    missing_keywords = list(set(job_tokens) - set(resume_tokens))
 
-    missing_keywords = job_words - resume_words
-    feedback = "Try adding these keywords: " + ", ".join(list(missing_keywords)[:5]) if missing_keywords else "Great match!"
+    score = round(len(matched_keywords) / len(job_tokens) * 100, 1) if job_tokens else 0
 
-    return score, list(matched_keywords), feedback
+    feedback = (
+        "Try adding these keywords: " + ", ".join(missing_keywords[:5])
+        if missing_keywords else "Great match!"
+    )
+
+    return score, matched_keywords, feedback
