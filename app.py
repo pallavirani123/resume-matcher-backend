@@ -25,7 +25,7 @@ def upload():
     job_keywords = extract_keywords(job_desc)
     match_result = match_keywords(resume_keywords, job_keywords)
 
-    score, matched_keywords, feedback = score_resume(resume_text, job_description)
+    score, matched_keywords, feedback = score_resume(resume_text, job_desc)
 
     return jsonify({
         "score": score,
