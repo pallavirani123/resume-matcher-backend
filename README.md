@@ -72,16 +72,16 @@ resume-matcher-backend/
 ```bash
 git clone https://github.com/pallavirani123/resume-matcher-backend.git
 cd resume-matcher-backend
-###2. Create and Activate Virtual Environment
+### 2. Create and Activate Virtual Environment
 
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
 
-###3.Install Dependencies
+### 3.Install Dependencies
 
 pip install -r requirements.txt
 
-###4. Run the App
+### 4. Run the App
 
 python app.py
 
